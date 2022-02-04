@@ -43,6 +43,10 @@ func runCli() {
 }
 
 func runServer(addr string) {
+	if hk := *flagHostkey; hk != "" {
+		pathHostKey = hk
+	}
+
 	withHostKey := wish.WithHostKeyPath(pathHostKey)
 	if pem, ok := os.LookupEnv(envHostKey); ok {
 		withHostKey = wish.WithHostKeyPEM([]byte(pem))
